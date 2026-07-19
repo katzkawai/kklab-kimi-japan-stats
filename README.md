@@ -39,7 +39,9 @@ python3 -m http.server 8000
 
 ## データの更新
 
-以下を実行すると World Bank API から最新データを取得し、`data/indicators.json` を再生成します。
+GitHub Actions（`.github/workflows/update-data.yml`）により、毎月9日に自動で最新データを取得し、変更があれば `data/indicators.json` をコミット＆プッシュします（push をトリガーに Pages も自動再ビルド）。手動で実行したい場合は Actions タブの「Update data」ワークフローから `workflow_dispatch` で実行できます。
+
+ローカルで手動更新する場合は以下を実行します。
 
 ```bash
 uv run tools/update_data.py
