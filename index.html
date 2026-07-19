@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本経済ダッシュボード | Japan Economic Dashboard</title>
+<meta name="description" content="World Bank データに基づく日本の主要経済指標ダッシュボード（GDP・物価・失業率・人口・為替など）">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>日本経済ダッシュボード</h1>
+    <p class="subtitle">World Bank (WDI) に基づく日本の主要経済指標 <span id="range-label"></span></p>
+  </div>
+</header>
+
+<main class="container">
+  <div id="error-banner" class="error-banner" hidden></div>
+
+  <section aria-label="主要指標サマリー">
+    <div id="kpi-grid" class="kpi-grid"></div>
+  </section>
+
+  <section class="chart-grid" aria-label="グラフ">
+    <article class="chart-card chart-wide">
+      <h2>GDPと実質成長率</h2>
+      <div id="chart-gdp" class="chart"></div>
+    </article>
+    <article class="chart-card">
+      <h2>一人当たりGDP</h2>
+      <div id="chart-gdppc" class="chart"></div>
+    </article>
+    <article class="chart-card">
+      <h2>物価上昇率と失業率</h2>
+      <div id="chart-prices" class="chart"></div>
+    </article>
+    <article class="chart-card">
+      <h2>人口と人口増加率</h2>
+      <div id="chart-pop" class="chart"></div>
+    </article>
+    <article class="chart-card">
+      <h2>為替レート（円/ドル・年平均）</h2>
+      <div id="chart-fx" class="chart"></div>
+    </article>
+    <article class="chart-card">
+      <h2>貿易（対GDP比）</h2>
+      <div id="chart-trade" class="chart"></div>
+    </article>
+    <article class="chart-card">
+      <h2>経常収支（対GDP比）</h2>
+      <div id="chart-cab" class="chart"></div>
+    </article>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>出典: <a id="source-link" href="#" rel="noopener">World Bank, World Development Indicators</a>（データ取得日: <span id="generated-label"></span>）/
+     指標コード: NY.GDP.MKTP.CD, NY.GDP.MKTP.KD.ZG, NY.GDP.PCAP.CD, FP.CPI.TOTL.ZG, SL.UEM.TOTL.ZS, SP.POP.TOTL, SP.POP.GROW, PA.NUS.FCRF, BN.CAB.XOKA.GD.ZS, NE.EXP.GNFS.ZS, NE.IMP.GNFS.ZS</p>
+    <p>本ページはデータの可視化を目的としたもので、投資助言ではありません。</p>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
