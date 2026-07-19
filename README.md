@@ -22,7 +22,8 @@ KPI カード（最新値と前年比）と 7 つのグラフを表示します�
 index.html               ダッシュボード本体
 assets/css/style.css     スタイル
 assets/js/app.js         データ読み込みとチャート描画（ECharts）
-data/indicators.json     指標データ（tools/build_data.py が生成）
+data/indicators.json     指標データ（tools/update_data.py が生成）
+tools/update_data.py     World Bank API から直接取得して data/indicators.json を再生成（PEP 723）
 tools/build_data.py      WDI の CSV から data/indicators.json を生成（PEP 723）
 tools/smoke_test.js      app.js のレンダリング経路を検証するスモークテスト
 ```
@@ -38,8 +39,16 @@ python3 -m http.server 8000
 
 ## データの更新
 
-1. World Bank Open Data API から指標ごとに CSV を取得する（列: `indicator,country,date,unit,value`）
-2. 以下を実行して `data/indicators.json` を再生成する
+以下を実行すると World Bank API から最新データを取得し、`data/indicators.json` を再生成します。
+
+```bash
+uv run tools/update_data.py
+git add data/indicators.json
+git commit -m "Update data"
+git push    # push 後、GitHub Pages が数分で自動再ビルドされます
+```
+
+CSV を手元で管理したい場合は、WDI の CSV（列: `indicator,country,date,unit,value`）から生成することもできます。
 
 ```bash
 uv run tools/build_data.py <CSVファイル>...
